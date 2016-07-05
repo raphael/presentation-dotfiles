@@ -52,11 +52,11 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 
 " deoplete
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Complete with tab
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " neocomplete like
 " set completeopt+=noinsert
@@ -69,10 +69,10 @@ let g:python3_host_prog  = '/usr/bin/python'
 " let g:python3_host_skip_check = 1
 
 " Run deoplete.nvim automatically
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 " deoplete-go settings
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+"let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+"let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " YCM
 "Plug 'Valloric/YouCompleteMe'
@@ -90,29 +90,29 @@ Plug 'majutsushi/tagbar'
 " GO support (https://github.com/jstemmer/gotags)
 
 " Git gutter
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 
 " TMUX
 "Plug 'edkolev/tmuxline.vim'
 
 " Javascript
-Plug 'leafgarland/typescript-vim'
-Plug 'leshill/vim-json'
-Plug 'groenewege/vim-less'
-Plug 'pangloss/vim-javascript'
-
+"Plug 'leafgarland/typescript-vim'
+"Plug 'leshill/vim-json'
+"Plug 'groenewege/vim-less'
+"Plug 'pangloss/vim-javascript'
+"
 " Ruby
-let g:ruby_path = system('echo $HOME/.rbenv/shims')
-Plug 'vim-ruby/vim-ruby'
-autocmd FileType ruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby let g:rubycomplete_buffer_loading=1
-autocmd FileType ruby let g:rubycomplete_classes_in_global=1
+" let g:ruby_path = system('echo $HOME/.rbenv/shims')
+" Plug 'vim-ruby/vim-ruby'
+" autocmd FileType ruby set omnifunc=rubycomplete#Complete
+" autocmd FileType ruby let g:rubycomplete_buffer_loading=1
+" autocmd FileType ruby let g:rubycomplete_classes_in_global=1
 
 " rbenv
-Plug 'tpope/vim-rbenv'
+"Plug 'tpope/vim-rbenv'
 
 " tmux
-Plug 'tmux-plugins/vim-tmux'
+"Plug 'tmux-plugins/vim-tmux'
 
 " bbye
 Plug 'gwww/vim-bbye'
@@ -143,7 +143,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_metalinter_enabled = ['vet', 'errcheck']
+let g:syntastic_go_checkers = ['govet', 'errcheck']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
@@ -167,15 +168,22 @@ au FileType go nmap <leader>gr <Plug>(go-referrers)
 au FileType go nmap <leader>gb <Plug>(go-build)
 au FileType go nmap <leader>gt <Plug>(go-test)
 au FileType go nmap <leader>gc <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+: au FileType go nmap <Leader>ds <Plug>(go-def-split)
+: au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+: au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
 " Misc
 Plug 'tpope/vim-markdown'
 Plug 'mhinz/vim-startify'
 
-Plug 'sourcegraph/sourcegraph-vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+
+Plug 'garbas/vim-snipmate' " snippets
+" Complete snippet with C-J
+imap <Tab> <Plug>snipMateNextOrTrigger
+"imap <expr> <C-E> pumvisible() ? '<esc>a<Plug>snipMateNextOrTrigger' : '<Plug>snipMateNextOrTrigger'
+"imap <expr> <C-S> '<Plug>snipMateNextOrTrigger'
 
 call plug#end()

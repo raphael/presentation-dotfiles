@@ -2,6 +2,9 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" DEMO stuff
+autocmd VimEnter * SnipMateLoadScope gophercon2016
+
 " So mapping in plugins are set correctly
 let mapleader=","
 
@@ -31,10 +34,10 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " TMUX integration
-autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("tmux setw automatic-rename")
-autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
-set title
+"autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+"autocmd VimLeave * call system("tmux setw automatic-rename")
+"autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+"set title
 
 " Editor behavior
 set linespace=0
@@ -95,14 +98,14 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.idea/*,.idea,*/.idea,*/.idea/*
 filetype plugin indent on
 
 " Do not replace tabs with spaces for languages that care
-autocmd FileType javascript set dictionary+=$HOME/.vim/dict/node.dict
+"autocmd FileType javascript set dictionary+=$HOME/.vim/dict/node.dict
 
 " Remove trailing spaces
-autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,ruby autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+"autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml,ruby autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 " Custom extensions
-autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-autocmd BufNewFile,BufRead *.jst set filetype=html
+"autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+"autocmd BufNewFile,BufRead *.jst set filetype=html
 
 " Settings for raw text editing
 autocmd BufRead *\.txt setlocal formatoptions=l
@@ -121,17 +124,17 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType html,markdown,xml setlocal omnifunc=htmlcomplete#CompleteTags
 
 " Switch between absolute and relative numbering on focus and insert
-set number relativenumber
+"set number relativenumber
 
-autocmd FocusGained * set number relativenumber
-autocmd WinEnter    * set number relativenumber
-autocmd InsertLeave * set number relativenumber
-autocmd BufNewFile  * set number relativenumber
-autocmd BufReadPost * set number relativenumber
-
-autocmd FocusLost   * set number norelativenumber
-autocmd InsertEnter * set number norelativenumber
-autocmd WinLeave    * set number norelativenumber
+" autocmd FocusGained * set number relativenumber
+" autocmd WinEnter    * set number relativenumber
+" autocmd InsertLeave * set number relativenumber
+" autocmd BufNewFile  * set number relativenumber
+" autocmd BufReadPost * set number relativenumber
+" 
+" autocmd FocusLost   * set number norelativenumber
+" autocmd InsertEnter * set number norelativenumber
+" autocmd WinLeave    * set number norelativenumber
 
 " Make ESC work faster
 set ttimeoutlen=10
@@ -185,7 +188,7 @@ noremap <silent> <F4> :let @+=expand("%:p")<CR>
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+"nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " Force saving when needing to sudo first"
 cnoreabbrev <expr> w!!
